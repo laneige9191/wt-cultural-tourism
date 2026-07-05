@@ -20,19 +20,19 @@ import {
   RefreshCw,
   PhoneCall
 } from 'lucide-react';
-import { staticTranslations } from '../lib/translations';
+import { plannerContent, staticTranslations } from '../content/content';
 
-interface HeroProps {
+interface HeroSectionProps {
   lang: 'zh' | 'en';
 }
 
-export default function Hero({ lang }: HeroProps) {
+export default function HeroSection({ lang }: HeroSectionProps) {
   const t = staticTranslations[lang];
 
   // Interactive Planner state
   const [category, setCategory] = useState<string>('health');
   const [urgency, setUrgency] = useState<string>('fast');
-  const [destination, setDestination] = useState<string>('广东 (Guangdong)');
+  const [destination, setDestination] = useState<string>(plannerContent.defaultDestination);
   const [addons, setAddons] = useState<string[]>([]);
   const [isCalculated, setIsCalculated] = useState<boolean>(false);
   const [isCalculating, setIsCalculating] = useState<boolean>(false);
@@ -57,7 +57,7 @@ export default function Hero({ lang }: HeroProps) {
   const handleReset = () => {
     setCategory('health');
     setUrgency('fast');
-    setDestination('广东 (Guangdong)');
+    setDestination(plannerContent.defaultDestination);
     setAddons([]);
     setIsCalculated(false);
   };
@@ -169,7 +169,7 @@ export default function Hero({ lang }: HeroProps) {
                             }`}
                           >
                             <HeartHandshake className="w-4 h-4" />
-                            <span className="text-[10px] leading-tight">{lang === 'zh' ? '回国体检' : 'Health'}</span>
+                            <span className="text-[10px] leading-tight">{plannerContent.serviceTypes[0].label[lang]}</span>
                           </button>
                           
                           <button
@@ -182,7 +182,7 @@ export default function Hero({ lang }: HeroProps) {
                             }`}
                           >
                             <Map className="w-4 h-4" />
-                            <span className="text-[10px] leading-tight">{lang === 'zh' ? '家庭定制游' : 'Travel'}</span>
+                            <span className="text-[10px] leading-tight">{plannerContent.serviceTypes[1].label[lang]}</span>
                           </button>
 
                           <button
@@ -195,7 +195,7 @@ export default function Hero({ lang }: HeroProps) {
                             }`}
                           >
                             <Compass className="w-4 h-4" />
-                            <span className="text-[10px] leading-tight">{lang === 'zh' ? '文化寻根' : 'Roots'}</span>
+                            <span className="text-[10px] leading-tight">{plannerContent.serviceTypes[2].label[lang]}</span>
                           </button>
                         </div>
                       </div>
@@ -215,7 +215,7 @@ export default function Hero({ lang }: HeroProps) {
                                 : 'border-slate-200 bg-[#FAFBFC] text-slate-600'
                             }`}
                           >
-                            {lang === 'zh' ? '近期急需 (48h内对接)' : 'Immediate (Within 48h)'}
+                            {plannerContent.urgencyOptions[0].label[lang]}
                           </button>
                           <button
                             type="button"
@@ -226,7 +226,7 @@ export default function Hero({ lang }: HeroProps) {
                                 : 'border-slate-200 bg-[#FAFBFC] text-slate-600'
                             }`}
                           >
-                            {lang === 'zh' ? '规划未来 (配合假期)' : 'Future Vacation Planner'}
+                            {plannerContent.urgencyOptions[1].label[lang]}
                           </button>
                         </div>
                       </div>
@@ -236,7 +236,7 @@ export default function Hero({ lang }: HeroProps) {
                         <label className="block text-xs font-bold text-slate-700 tracking-wider uppercase flex justify-between items-center">
                           <span>{t.selectDestination}</span>
                           <span className="text-[9px] text-[#B39D82] font-semibold font-mono tracking-normal normal-case">
-                            {lang === 'zh' ? '※ 拒绝普通土特产代理' : '※ Pure Custom Service Only'}
+                            {plannerContent.destinationNote[lang]}
                           </span>
                         </label>
                         <select
@@ -244,14 +244,9 @@ export default function Hero({ lang }: HeroProps) {
                           onChange={(e) => setDestination(e.target.value)}
                           className="w-full text-xs py-2.5 px-3 rounded-lg border border-slate-200 bg-[#FAFBFC] text-slate-700 font-medium focus:border-[#002855] outline-none"
                         >
-                          <option value="广东 (Guangdong)">{lang === 'zh' ? '广东 (珠三角及潮汕侨乡)' : 'Guangdong Province'}</option>
-                          <option value="福建 (Fujian)">{lang === 'zh' ? '福建 (闽南祖籍与岩茶文化源地)' : 'Fujian Province'}</option>
-                          <option value="云南 (Yunnan)">{lang === 'zh' ? '云南 (滇南高原与多民族非遗体验)' : 'Yunnan Province'}</option>
-                          <option value="四川 (Sichuan)">{lang === 'zh' ? '四川 (巴蜀山水与大熊猫保护科考)' : 'Sichuan Province'}</option>
-                          <option value="新疆 (Xinjiang)">{lang === 'zh' ? '新疆 (西域人文历史与壮丽丝路)' : 'Xinjiang Region'}</option>
-                          <option value="青海 (Qinghai)">{lang === 'zh' ? '青海 (高原净土生态与多代慢行)' : 'Qinghai Province'}</option>
-                          <option value="浙江 (Zhejiang)">{lang === 'zh' ? '浙江 (江南精致水乡与宗祠寻根)' : 'Zhejiang Province'}</option>
-                          <option value="奥克兰 (Auckland)">{lang === 'zh' ? '奥克兰总部 (新西兰纯净高奢定制 · 不售土产品)' : 'Auckland (Pure Luxury Travel - No Native Products)'}</option>
+                          {plannerContent.destinations.map((item) => (
+                            <option key={item.value} value={item.value}>{item.label[lang]}</option>
+                          ))}
                         </select>
                       </div>
 
@@ -261,12 +256,7 @@ export default function Hero({ lang }: HeroProps) {
                           {t.additionalNeeds}
                         </label>
                         <div className="grid grid-cols-2 gap-2">
-                          {[
-                            { id: 'bilingual', label: '中英双语顾问', labelEn: 'Bilingual Advisor' },
-                            { id: 'medical', label: '1对1专业医护', labelEn: 'Private Nurse Escort' },
-                            { id: 'documentary', label: '随行纪录片拍摄', labelEn: 'Homecoming Film Crew' },
-                            { id: 'access', label: '轮椅/无障碍特检', labelEn: 'Barrier-free Mapping' }
-                          ].map((item) => (
+                          {plannerContent.addons.map((item) => (
                             <button
                               key={item.id}
                               type="button"
@@ -282,9 +272,9 @@ export default function Hero({ lang }: HeroProps) {
                                   ? 'border-[#B39D82] bg-[#B39D82] text-white' 
                                   : 'border-slate-300 bg-white'
                               }`}>
-                                {addons.includes(item.id) && <span className="text-[8px] font-black">✓</span>}
+                                {addons.includes(item.id) && <span className="text-[8px] font-black">{plannerContent.checkSymbol}</span>}
                               </div>
-                              <span className="truncate">{lang === 'zh' ? item.label : item.labelEn}</span>
+                              <span className="truncate">{item.label[lang]}</span>
                             </button>
                           ))}
                         </div>
@@ -299,7 +289,7 @@ export default function Hero({ lang }: HeroProps) {
                         {isCalculating ? (
                           <>
                             <RefreshCw className="w-4 h-4 animate-spin" />
-                            <span>{lang === 'zh' ? '正在匹配专业团队...' : 'Optimizing resources...'}</span>
+                            <span>{plannerContent.calculating[lang]}</span>
                           </>
                         ) : (
                           <>
@@ -323,7 +313,7 @@ export default function Hero({ lang }: HeroProps) {
                             {t.plannerResultTitle}
                           </span>
                           <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-black bg-[#002855]/10 text-[#002855]">
-                            CONFIRMED
+                            {plannerContent.confirmed}
                           </span>
                         </div>
 
@@ -332,7 +322,7 @@ export default function Hero({ lang }: HeroProps) {
                           <div className="flex items-start space-x-2.5">
                             <MapPin className="w-4 h-4 text-[#002855] mt-0.5 shrink-0" />
                             <div>
-                              <div className="text-[11px] font-bold text-slate-500 uppercase">{lang === 'zh' ? '目标服务区' : 'OPERATIONAL SECTOR'}</div>
+                              <div className="text-[11px] font-bold text-slate-500 uppercase">{plannerContent.operationalSector[lang]}</div>
                               <div className="text-xs font-semibold text-slate-800">{destination}</div>
                             </div>
                           </div>
@@ -349,7 +339,7 @@ export default function Hero({ lang }: HeroProps) {
                           <div className="flex items-start space-x-2.5">
                             <Calendar className="w-4 h-4 text-[#002855] mt-0.5 shrink-0" />
                             <div>
-                              <div className="text-[11px] font-bold text-slate-500 uppercase">{lang === 'zh' ? '时效响应' : 'TIMELINE STRATEGY'}</div>
+                              <div className="text-[11px] font-bold text-slate-500 uppercase">{plannerContent.timelineStrategy[lang]}</div>
                               <div className="text-xs font-semibold text-slate-800" dangerouslySetInnerHTML={{ __html: urgency === 'fast' ? t.urgencyText1 : t.urgencyText2 }} />
                             </div>
                           </div>
@@ -358,14 +348,11 @@ export default function Hero({ lang }: HeroProps) {
                         {/* Selected addons pill list */}
                         {addons.length > 0 && (
                           <div className="border-t border-slate-200 pt-3">
-                            <div className="text-[10px] font-bold text-slate-500 uppercase mb-1.5">{lang === 'zh' ? '已选附加特权' : 'EXCLUSIVE PRIVILEGES SELECTED'}</div>
+                            <div className="text-[10px] font-bold text-slate-500 uppercase mb-1.5">{plannerContent.selectedPrivileges[lang]}</div>
                             <div className="flex flex-wrap gap-1">
                               {addons.map(addon => (
                                 <span key={addon} className="px-2 py-0.5 text-[9px] font-semibold text-[#002855] bg-[#002855]/5 border border-[#002855]/10 rounded-full">
-                                  {addon === 'bilingual' && (lang === 'zh' ? '中英双语顾问' : 'Bilingual Support')}
-                                  {addon === 'medical' && (lang === 'zh' ? '1对1专业医护' : 'Clinical Nurse Escort')}
-                                  {addon === 'documentary' && (lang === 'zh' ? '随行纪录片' : 'Custom Film Crew')}
-                                  {addon === 'access' && (lang === 'zh' ? '无障碍查勘' : 'Accessibility Mapping')}
+                                  {plannerContent.addons.find((item) => item.id === addon)?.resultLabel[lang]}
                                 </span>
                               ))}
                             </div>
@@ -375,15 +362,13 @@ export default function Hero({ lang }: HeroProps) {
                         {/* High-end Brand Commitment Pledge */}
                         <div className="border-t border-dashed border-slate-200 pt-3">
                           <div className="bg-amber-50 border border-amber-100 rounded-lg p-2.5 flex items-start space-x-2">
-                            <span className="text-amber-600 font-bold text-xs shrink-0 mt-0.5">⚠️</span>
+                            <span className="text-amber-600 font-bold text-xs shrink-0 mt-0.5">{plannerContent.commitmentIcon}</span>
                             <div>
                               <div className="text-[10px] font-black text-amber-800 uppercase tracking-wide">
-                                {lang === 'zh' ? 'WT 纯净定制承诺 (WT Luxury Commitment)' : 'WT LUXURY COMMITMENT'}
+                                {plannerContent.commitmentTitle[lang]}
                               </div>
                               <div className="text-[9px] text-amber-700 leading-normal mt-0.5">
-                                {lang === 'zh' 
-                                  ? '本司专注于尊贵人文体验与医学陪护。严正声明：我们不从事任何地方土特产品、大路货伴手礼或普通代购百货的购销代理。' 
-                                  : 'We strictly focus on elite cultural custom tours and medical care. We do NOT trade, supply or procure mass-market local specialty products or souvenirs.'}
+                                {plannerContent.commitmentText[lang]}
                               </div>
                             </div>
                           </div>

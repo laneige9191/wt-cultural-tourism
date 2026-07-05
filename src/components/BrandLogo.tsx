@@ -1,13 +1,14 @@
 import React from 'react';
+import { brandContent } from '../content/content';
 
-interface WTLogoProps {
+interface BrandLogoProps {
   className?: string;
   showText?: boolean;
   lightTheme?: boolean;
   lang?: 'zh' | 'en';
 }
 
-export default function WTLogo({ className = 'h-12', showText = true, lightTheme = false, lang = 'zh' }: WTLogoProps) {
+export default function BrandLogo({ className = 'h-12', showText = true, lightTheme = false, lang = 'zh' }: BrandLogoProps) {
   const primaryColor = lightTheme ? '#FAFBFC' : '#002266';
   const textColor = lightTheme ? '#FAFBFC' : '#002266';
   const secondaryColor = '#B39D82'; // Gold accents for subtitle/borders
@@ -113,20 +114,20 @@ export default function WTLogo({ className = 'h-12', showText = true, lightTheme
               className="font-sans font-black text-lg md:text-xl tracking-tight leading-none uppercase"
               style={{ color: textColor }}
             >
-              WT NEW ZEALAND
+              {brandContent.name}
             </span>
           </div>
           <span 
             className="text-[9px] md:text-[10px] font-mono tracking-widest font-extrabold mt-1.5 leading-none uppercase transition-colors"
             style={{ color: secondaryColor }}
           >
-            WT CULTURAL EXCHANGE
+            {brandContent.division}
           </span>
           <span 
             className="text-[8px] md:text-[9px] font-medium mt-1 leading-none transition-colors"
             style={{ color: subTextColor }}
           >
-            {lang === 'zh' ? '新西兰文化交流与旅游有限公司' : '& TOURISM LIMITED'}
+            {brandContent.company[lang]}
           </span>
         </div>
       )}

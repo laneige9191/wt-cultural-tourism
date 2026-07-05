@@ -6,13 +6,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Quote, Landmark, MapPin, Calendar, Clock, ChevronDown, ChevronUp, Star } from 'lucide-react';
-import { caseScenarios, staticTranslations } from '../lib/translations';
+import { caseScenarios, caseStoriesContent, staticTranslations } from '../content/content';
 
-interface ScenariosProps {
+interface CaseStoriesSectionProps {
   lang: 'zh' | 'en';
 }
 
-export default function Scenarios({ lang }: ScenariosProps) {
+export default function CaseStoriesSection({ lang }: CaseStoriesSectionProps) {
   const t = staticTranslations[lang];
   const [activeCaseIndex, setActiveCaseIndex] = useState<number>(0);
   const [showTimeline, setShowTimeline] = useState<boolean>(false);
@@ -33,7 +33,7 @@ export default function Scenarios({ lang }: ScenariosProps) {
           <div className="inline-flex items-center space-x-1 bg-[#002855]/5 px-3 py-1 rounded-full border border-[#002855]/10">
             <Quote className="w-3.5 h-3.5 text-[#B39D82]" />
             <span className="text-[11px] font-bold text-[#002855] tracking-widest uppercase">
-              {lang === 'zh' ? '真实案例场景' : 'CASE SCENARIOS'}
+              {caseStoriesContent.eyebrow[lang]}
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -111,7 +111,7 @@ export default function Scenarios({ lang }: ScenariosProps) {
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3 h-3 fill-[#B39D82] text-[#B39D82]" />
                   ))}
-                  <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider ml-1">Verified Client Feedbacks</span>
+                  <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider ml-1">{caseStoriesContent.feedbackLabel}</span>
                 </div>
               </div>
             </div>
@@ -119,14 +119,8 @@ export default function Scenarios({ lang }: ScenariosProps) {
             {/* Illustration Graphic Area */}
             <div className="lg:col-span-4 bg-white border border-slate-200 p-3 rounded-2xl shadow-md">
               <img 
-                src={
-                  activeCase.id === 'case-1' 
-                    ? '/src/assets/images/medical_care_1783234731686.jpg' 
-                    : activeCase.id === 'case-2'
-                    ? '/src/assets/images/family_travel_1783234758115.jpg'
-                    : '/src/assets/images/roots_seeking_1783234742816.jpg'
-                } 
-                alt="Case Scenario Illustration" 
+                src={activeCase.image}
+                alt={caseStoriesContent.imageAlt[lang]} 
                 referrerPolicy="no-referrer"
                 className="w-full h-[220px] object-cover rounded-xl"
               />
@@ -156,7 +150,7 @@ export default function Scenarios({ lang }: ScenariosProps) {
                 >
                   <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-inner space-y-6">
                     <h4 className="text-xs font-bold text-[#B39D82] uppercase tracking-wider text-center">
-                      WT VIP WHITE-GLOVE DEPLOYMENT JOURNAL
+                      {caseStoriesContent.timelineJournalTitle}
                     </h4>
                     
                     {/* Time line sequence */}

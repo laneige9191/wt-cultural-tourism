@@ -5,13 +5,13 @@
 
 import React from 'react';
 import { ShieldCheck, Landmark, Heart, Award, Star, Library } from 'lucide-react';
-import { staticTranslations } from '../lib/translations';
+import { staticTranslations, trustContent } from '../content/content';
 
-interface CapabilitiesProps {
+interface TrustSectionProps {
   lang: 'zh' | 'en';
 }
 
-export default function Capabilities({ lang }: CapabilitiesProps) {
+export default function TrustSection({ lang }: TrustSectionProps) {
   const t = staticTranslations[lang];
 
   const capabilityItems = [
@@ -19,21 +19,21 @@ export default function Capabilities({ lang }: CapabilitiesProps) {
       icon: ShieldCheck,
       title: t.cap1Title,
       desc: t.cap1Desc,
-      tag: lang === 'zh' ? '安全守信' : 'TRUST & LEGAL',
+      tag: trustContent.tags[0][lang],
       accent: 'border-l-4 border-l-[#002855]'
     },
     {
       icon: Landmark,
       title: t.cap2Title,
       desc: t.cap2Desc,
-      tag: lang === 'zh' ? '官方直通' : 'OFFICIAL LINK',
+      tag: trustContent.tags[1][lang],
       accent: 'border-l-4 border-l-[#B39D82]'
     },
     {
       icon: Library,
       title: t.cap3Title,
       desc: t.cap3Desc,
-      tag: lang === 'zh' ? '学术医护' : 'CLINICAL & SCHOLARLY',
+      tag: trustContent.tags[2][lang],
       accent: 'border-l-4 border-l-[#00D2FF]'
     }
   ];
@@ -47,7 +47,7 @@ export default function Capabilities({ lang }: CapabilitiesProps) {
           <div className="inline-flex items-center space-x-1 bg-[#002855]/5 px-3 py-1 rounded-full border border-[#002855]/10">
             <Award className="w-3.5 h-3.5 text-[#B39D82]" />
             <span className="text-[11px] font-bold text-[#002855] tracking-widest uppercase">
-              {lang === 'zh' ? '品牌硬实力' : 'INSTITUTIONAL STRENGTH'}
+              {trustContent.eyebrow[lang]}
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -58,7 +58,7 @@ export default function Capabilities({ lang }: CapabilitiesProps) {
           </p>
         </div>
 
-        {/* Capabilities Grid */}
+        {/* TrustSection Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {capabilityItems.map((item, index) => {
             const IconComponent = item.icon;
@@ -100,7 +100,7 @@ export default function Capabilities({ lang }: CapabilitiesProps) {
                       ))}
                     </div>
                     <span className="text-[10px] font-mono text-slate-400 font-semibold uppercase">
-                      Class-A Audited
+                      {trustContent.auditLabel}
                     </span>
                   </div>
                 </div>

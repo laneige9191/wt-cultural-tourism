@@ -5,13 +5,13 @@
 
 import React, { useState } from 'react';
 import { Settings, CheckSquare, Compass, Shield, Award, HelpCircle } from 'lucide-react';
-import { staticTranslations } from '../lib/translations';
+import { processContent, staticTranslations } from '../content/content';
 
-interface WorkflowProps {
+interface ProcessSectionProps {
   lang: 'zh' | 'en';
 }
 
-export default function Workflow({ lang }: WorkflowProps) {
+export default function ProcessSection({ lang }: ProcessSectionProps) {
   const t = staticTranslations[lang];
   const [selectedStep, setSelectedStep] = useState<number>(0);
 
@@ -21,45 +21,35 @@ export default function Workflow({ lang }: WorkflowProps) {
       title: t.step1,
       desc: t.step1Desc,
       icon: Compass,
-      checklist: lang === 'zh' 
-        ? ['注册海外专属管家账户', '专属Zoom视频需求分析会', '收集病历、行程偏好、寻根地名等'] 
-        : ['Create global account', 'Dedicated Zoom video intake session', 'Consolidate medical, travel or clan records']
+      checklist: processContent.checklists[0][lang],
     },
     {
       id: 2,
       title: t.step2,
       desc: t.step2Desc,
       icon: Settings,
-      checklist: lang === 'zh'
-        ? ['全科顾问定制专属筛查表', '历史学者开展老村志比对与迁徙路线论证', '慢节奏商务游轮及无障碍路线草图']
-        : ['GPs custom checkup schedules', 'Historians analyze local archives & map ancestral path', 'Slow itineraries & wheelchair layouts drafted']
+      checklist: processContent.checklists[1][lang],
     },
     {
       id: 3,
       title: t.step3,
       desc: t.step3Desc,
       icon: Shield,
-      checklist: lang === 'zh'
-        ? ['护士对接三甲医院专属号源与特需门诊', '高级管家对入住酒店开展无障碍现场踩点', '文献小组取得地方侨联及家乡长辈对接']
-        : ['Nurse reserves specialized clinical slots', 'Auditor checks hotel wheelchair ramps', 'Genealogists secure local liaison with village council']
+      checklist: processContent.checklists[2][lang],
     },
     {
       id: 4,
       title: t.step4,
       desc: t.step4Desc,
       icon: Award,
-      checklist: lang === 'zh'
-        ? ['尊贵商务座驾全程点对点陪同接送', '心血管/全科护士全程随身提供临床照看', '家乡宗祠开大门隆重拜谒与跟拍记录']
-        : ['Point-to-point chauffeured executive MPVs', 'Bilingual nurse accompanies elder continuously', 'Dignified clan worship ceremony filmed by professionals']
+      checklist: processContent.checklists[3][lang],
     },
     {
       id: 5,
       title: t.step5,
       desc: t.step5Desc,
       icon: CheckSquare,
-      checklist: lang === 'zh'
-        ? ['中英双语医疗汇总及用药跟踪档案', '家族寻根手账、宗谱与高清纪录片交付', '加入长期年度尊荣关怀网络']
-        : ['Bilingual clinical digests & drug tracker', 'Genealogy book, custom album & HD video delivered', 'Enrolled into annual premium companion care plan']
+      checklist: processContent.checklists[4][lang],
     }
   ];
 
@@ -72,7 +62,7 @@ export default function Workflow({ lang }: WorkflowProps) {
           <div className="inline-flex items-center space-x-1 bg-[#002855]/5 px-3 py-1 rounded-full border border-[#002855]/10">
             <Settings className="w-3.5 h-3.5 text-[#B39D82]" />
             <span className="text-[11px] font-bold text-[#002855] tracking-widest uppercase">
-              {lang === 'zh' ? '尊享定制流程' : 'HOW IT WORKS'}
+              {processContent.eyebrow[lang]}
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -134,7 +124,7 @@ export default function Workflow({ lang }: WorkflowProps) {
                     {steps[selectedStep].title}
                   </h4>
                   <p className="text-xs text-[#B39D82] font-semibold uppercase tracking-wider font-mono">
-                    {lang === 'zh' ? 'WT 白手套品质标准' : 'WT ROYAL COMPLIANCE STEP'}
+                    {processContent.qualityStandard[lang]}
                   </p>
                 </div>
               </div>
@@ -146,7 +136,7 @@ export default function Workflow({ lang }: WorkflowProps) {
               {/* Sub Checklist Panel */}
               <div className="space-y-4 pt-2">
                 <h5 className="text-xs font-bold text-[#002855] tracking-wider uppercase">
-                  {lang === 'zh' ? '核心任务与成果交付物 :' : 'CORE MILESTONES & OUTPUTS :'}
+                  {processContent.milestoneHeading[lang]}
                 </h5>
                 <ul className="grid grid-cols-1 md:grid-cols-1 gap-3">
                   {steps[selectedStep].checklist.map((item, idx) => (
@@ -155,7 +145,7 @@ export default function Workflow({ lang }: WorkflowProps) {
                       className="flex items-center space-x-3 bg-[#FAFBFC] border border-slate-200/50 rounded-lg p-3 text-xs sm:text-sm text-slate-700 font-medium"
                     >
                       <div className="w-5 h-5 rounded-full bg-[#002855]/5 border border-[#002855]/10 flex items-center justify-center text-xs font-bold text-[#002855]">
-                        ✓
+                        {processContent.checkSymbol}
                       </div>
                       <span>{item}</span>
                     </li>

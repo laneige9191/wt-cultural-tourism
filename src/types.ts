@@ -35,6 +35,7 @@ export interface CustomerProfile {
 
 export interface CaseScenario {
   id: string;
+  image: string;
   title: string;
   titleEn: string;
   category: string;

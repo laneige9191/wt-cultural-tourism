@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Check, Copy, MessageSquare, ExternalLink } from 'lucide-react';
+import { Mail, Phone, Check, Copy, MessageSquare } from 'lucide-react';
+import { contactInfo, wechatContactContent } from '../content/content';
 
-interface WeChatQRCodeProps {
+interface WeChatContactCardProps {
   lang: 'zh' | 'en';
 }
 
-export default function WeChatQRCode({ lang }: WeChatQRCodeProps) {
+export default function WeChatContactCard({ lang }: WeChatContactCardProps) {
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const contactEmail = '1282380800@qq.com';
+  const contactEmail = contactInfo.email;
 
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText(contactEmail);
@@ -26,7 +27,7 @@ export default function WeChatQRCode({ lang }: WeChatQRCodeProps) {
       {/* Title */}
       <div className="flex items-center space-x-2 text-[#07C160] font-bold text-sm tracking-wide mb-4">
         <MessageSquare className="w-4 h-4 fill-[#07C160]" />
-        <span>{lang === 'zh' ? '微信扫码 · 即刻对接' : 'WECHAT OFFICIAL CHAT'}</span>
+        <span>{wechatContactContent.title[lang]}</span>
       </div>
 
       {/* QR Code Container */}
@@ -120,32 +121,32 @@ export default function WeChatQRCode({ lang }: WeChatQRCodeProps) {
 
       {/* Legend text from WeChat UI */}
       <span className="text-[11px] font-bold text-[#07C160] mt-4 font-sans tracking-wide">
-        {lang === 'zh' ? '扫二维码，添加我为朋友' : 'Scan to Add Me as Friend'}
+        {wechatContactContent.scanLabel[lang]}
       </span>
       <span className="text-[9px] text-slate-400 mt-0.5">
-        {lang === 'zh' ? '微信客服号：WT-NZ-CONCIERGE' : 'WeChat ID: WT-NZ-CONCIERGE'}
+        {wechatContactContent.wechatIdLabel[lang]}
       </span>
 
       {/* Official Email Copy Board */}
       <div className="w-full border-t border-slate-100 mt-6 pt-5 space-y-3.5 text-left text-xs text-slate-600">
         <div className="flex items-center justify-between">
           <span className="text-slate-400 font-bold uppercase text-[9px] tracking-wider">
-            {lang === 'zh' ? '官方联系人邮箱' : 'CONTACT EMAIL'}
+            {wechatContactContent.emailHeading[lang]}
           </span>
           <button 
             onClick={copyEmailToClipboard}
             className="flex items-center space-x-1 text-[#002855] hover:text-[#00529B] font-bold text-[10px] uppercase transition-colors"
-            title="Copy Email"
+            title={wechatContactContent.copyTitle}
           >
             {copiedEmail ? (
               <>
                 <Check className="w-3 h-3 text-emerald-500" />
-                <span className="text-emerald-500">{lang === 'zh' ? '已复制' : 'COPIED'}</span>
+                <span className="text-emerald-500">{wechatContactContent.copied[lang]}</span>
               </>
             ) : (
               <>
                 <Copy className="w-3 h-3" />
-                <span>{lang === 'zh' ? '复制' : 'COPY'}</span>
+                <span>{wechatContactContent.copy[lang]}</span>
               </>
             )}
           </button>
@@ -163,15 +164,15 @@ export default function WeChatQRCode({ lang }: WeChatQRCodeProps) {
           <div className="flex items-center space-x-2 text-[11px] font-medium text-slate-700">
             <Phone className="w-3.5 h-3.5 text-[#B39D82] shrink-0" />
             <div>
-              <span className="text-[10px] text-slate-400 font-bold block leading-none">{lang === 'zh' ? '新西兰奥克兰总部' : 'Auckland HQ Phone'}</span>
-              <span className="font-mono font-semibold">+64 (09) 889-1888</span>
+              <span className="text-[10px] text-slate-400 font-bold block leading-none">{wechatContactContent.aucklandPhoneLabel[lang]}</span>
+              <span className="font-mono font-semibold">{contactInfo.aucklandPhone}</span>
             </div>
           </div>
           <div className="flex items-center space-x-2 text-[11px] font-medium text-slate-700">
             <Phone className="w-3.5 h-3.5 text-[#B39D82] shrink-0" />
             <div>
-              <span className="text-[10px] text-slate-400 font-bold block leading-none">{lang === 'zh' ? '中国南方办事处' : 'China Hub Phone'}</span>
-              <span className="font-mono font-semibold">+86 (755) 8898-1212</span>
+              <span className="text-[10px] text-slate-400 font-bold block leading-none">{wechatContactContent.chinaPhoneLabel[lang]}</span>
+              <span className="font-mono font-semibold">{contactInfo.chinaPhone}</span>
             </div>
           </div>
         </div>

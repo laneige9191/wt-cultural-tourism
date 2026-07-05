@@ -6,13 +6,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Users, XCircle, CheckCircle2, Quote, Sparkles } from 'lucide-react';
-import { customerProfiles, staticTranslations } from '../lib/translations';
+import { audienceContent, customerProfiles, staticTranslations } from '../content/content';
 
-interface CustomersProps {
+interface AudienceSectionProps {
   lang: 'zh' | 'en';
 }
 
-export default function Customers({ lang }: CustomersProps) {
+export default function AudienceSection({ lang }: AudienceSectionProps) {
   const t = staticTranslations[lang];
   const [activeTab, setActiveTab] = useState<string>('elite-professional');
 
@@ -82,7 +82,7 @@ export default function Customers({ lang }: CustomersProps) {
                 <div className="space-y-6 relative z-10">
                   <div className="inline-flex items-center space-x-1.5 bg-[#B39D82]/20 text-[#B39D82] text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full border border-[#B39D82]/30">
                     <Sparkles className="w-3 h-3" />
-                    <span>CLIENT PERSONA</span>
+                    <span>{audienceContent.personaLabel}</span>
                   </div>
 
                   <p className="text-sm sm:text-base italic font-medium leading-relaxed text-slate-100">

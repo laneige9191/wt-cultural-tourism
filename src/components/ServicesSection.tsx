@@ -5,13 +5,13 @@
 
 import React from 'react';
 import { Compass, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
-import { services, staticTranslations } from '../lib/translations';
+import { services, servicesContent, staticTranslations } from '../content/content';
 
-interface CoreFeaturesProps {
+interface ServicesSectionProps {
   lang: 'zh' | 'en';
 }
 
-export default function CoreFeatures({ lang }: CoreFeaturesProps) {
+export default function ServicesSection({ lang }: ServicesSectionProps) {
   const t = staticTranslations[lang];
 
   return (
@@ -23,7 +23,7 @@ export default function CoreFeatures({ lang }: CoreFeaturesProps) {
           <div className="inline-flex items-center space-x-1 bg-[#002855]/5 px-3 py-1 rounded-full border border-[#002855]/10">
             <Compass className="w-3.5 h-3.5 text-[#B39D82]" />
             <span className="text-[11px] font-bold text-[#002855] tracking-widest uppercase">
-              {lang === 'zh' ? '核心服务板块' : 'CORE PORTFOLIOS'}
+              {servicesContent.eyebrow[lang]}
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
@@ -56,7 +56,7 @@ export default function CoreFeatures({ lang }: CoreFeaturesProps) {
                     
                     {/* Corner overlay badge */}
                     <div className="absolute top-4 left-4 bg-slate-900/85 backdrop-blur-sm border border-white/20 px-3.5 py-1 rounded text-[11px] font-bold text-white tracking-widest uppercase">
-                      {lang === 'zh' ? `板块 0${index + 1}` : `SECTION 0${index + 1}`}
+                      {`${servicesContent.sectionLabel[lang]} 0${index + 1}`}
                     </div>
 
                     {/* Accent gradient layer */}
@@ -94,7 +94,7 @@ export default function CoreFeatures({ lang }: CoreFeaturesProps) {
                       href="#contact"
                       className="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-bold text-[#002855] hover:text-[#00529B] group"
                     >
-                      <span>{lang === 'zh' ? '预约定制此专属方案' : 'Consult on this portfolio'}</span>
+                      <span>{servicesContent.consultAction[lang]}</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>

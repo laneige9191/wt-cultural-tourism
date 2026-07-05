@@ -6,14 +6,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, Phone, Users, Calendar, Sparkles, Send, ShieldCheck, CheckCircle2 } from 'lucide-react';
-import { staticTranslations } from '../lib/translations';
-import WeChatQRCode from './WeChatQRCode';
+import { contactSectionContent, staticTranslations } from '../content/content';
+import WeChatContactCard from './WeChatContactCard';
 
-interface ContactFormProps {
+interface ContactSectionProps {
   lang: 'zh' | 'en';
 }
 
-export default function ContactForm({ lang }: ContactFormProps) {
+export default function ContactSection({ lang }: ContactSectionProps) {
   const t = staticTranslations[lang];
 
   // Form states
@@ -56,7 +56,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
               <div className="inline-flex items-center space-x-1.5 bg-white/10 px-3.5 py-1.5 rounded-full border border-white/10">
                 <ShieldCheck className="w-4 h-4 text-[#B39D82]" />
                 <span className="text-xs font-bold text-[#CBD5E1] tracking-widest uppercase">
-                  {lang === 'zh' ? '新西兰总部受托保障' : 'NZ LAW COMPLIANT'}
+                  {contactSectionContent.eyebrow[lang]}
                 </span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
@@ -72,24 +72,24 @@ export default function ContactForm({ lang }: ContactFormProps) {
               <div className="flex items-start space-x-3.5">
                 <div className="w-5 h-5 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400 mt-0.5 text-xs">✓</div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-white">{lang === 'zh' ? '24小时极速响应' : '24-Hour Active Response'}</h4>
-                  <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">{lang === 'zh' ? '新西兰奥克兰总部与中国办事处无缝对接，首问责任制' : 'Seamless dual coordination by Auckland HQ and domestic offices'}</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-white">{contactSectionContent.guarantees[0].title[lang]}</h4>
+                  <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">{contactSectionContent.guarantees[0].desc[lang]}</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3.5">
                 <div className="w-5 h-5 rounded-full bg-[#B39D82]/20 border border-[#B39D82]/40 flex items-center justify-center shrink-0 text-[#B39D82] mt-0.5 text-xs">✓</div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-[#B39D82]">{lang === 'zh' ? '1对1资深定制顾问' : 'Personal Custom Director'}</h4>
-                  <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">{lang === 'zh' ? '指派十年以上高端文旅或外事医疗背景项目总监提供服务' : 'Senior project manager with 10+ years ex-diplomatic or medical consulting experience'}</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-[#B39D82]">{contactSectionContent.guarantees[1].title[lang]}</h4>
+                  <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">{contactSectionContent.guarantees[1].desc[lang]}</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3.5">
                 <div className="w-5 h-5 rounded-full bg-[#00D2FF]/10 border border-[#00D2FF]/30 flex items-center justify-center shrink-0 text-[#00D2FF] mt-0.5 text-xs">✓</div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-[#00D2FF]">{lang === 'zh' ? '保密协议(NDA)护航' : 'High-Spec Privacy Compliance'}</h4>
-                  <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">{lang === 'zh' ? '严格遵守新西兰信息法及NDA，对家庭成员隐私进行绝密守护' : 'Compliant with NZ Information Act & NDA to safeguard medical and family details'}</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-[#00D2FF]">{contactSectionContent.guarantees[2].title[lang]}</h4>
+                  <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">{contactSectionContent.guarantees[2].desc[lang]}</p>
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
                           required
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          placeholder={lang === 'zh' ? '例如：张先生' : 'e.g., Prof. Zhang'}
+                          placeholder={contactSectionContent.placeholders.name[lang]}
                           className="w-full text-xs py-3 px-4 rounded-lg bg-white/5 border border-white/15 focus:border-[#B39D82] focus:bg-white/10 text-white placeholder-slate-500 outline-none transition-all duration-200"
                         />
                       </div>
@@ -123,7 +123,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
                           required
                           value={wechat}
                           onChange={(e) => setWechat(e.target.value)}
-                          placeholder="WeChat ID / WhatsApp / Telegram"
+                          placeholder={contactSectionContent.placeholders.messenger}
                           className="w-full text-xs py-3 px-4 rounded-lg bg-white/5 border border-white/15 focus:border-[#B39D82] focus:bg-white/10 text-white placeholder-slate-500 outline-none transition-all duration-200"
                         />
                       </div>
@@ -138,7 +138,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="name@domain.com"
+                          placeholder={contactSectionContent.placeholders.email}
                           className="w-full text-xs py-3 px-4 rounded-lg bg-white/5 border border-white/15 focus:border-[#B39D82] focus:bg-white/10 text-white placeholder-slate-500 outline-none transition-all duration-200"
                         />
                       </div>
@@ -151,7 +151,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
                           required
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          placeholder="+64 21 000 0000"
+                          placeholder={contactSectionContent.placeholders.phone}
                           className="w-full text-xs py-3 px-4 rounded-lg bg-white/5 border border-white/15 focus:border-[#B39D82] focus:bg-white/10 text-white placeholder-slate-500 outline-none transition-all duration-200"
                         />
                       </div>
@@ -165,10 +165,9 @@ export default function ContactForm({ lang }: ContactFormProps) {
                         onChange={(e) => setCategory(e.target.value)}
                         className="w-full text-xs py-3 px-4 rounded-lg bg-[#031E3F] border border-white/15 focus:border-[#B39D82] text-white outline-none transition-all duration-200"
                       >
-                        <option value="health">{lang === 'zh' ? '回国深度体检与医院绿色通道陪护' : 'Homecoming Health Checkup & Escort'}</option>
-                        <option value="travel">{lang === 'zh' ? '多代同堂高端定制慢旅行 (中/新两地)' : 'Custom Multi-Generational Travel'}</option>
-                        <option value="roots">{lang === 'zh' ? '华裔新生代谱系学术考证与返乡寻根' : 'Roots-Seeking & Ancestral Heritage Search'}</option>
-                        <option value="multi">{lang === 'zh' ? '多项联合定制服务规划' : 'Comprehensive Joint Custom Portfolios'}</option>
+                        {contactSectionContent.categories.map((item) => (
+                          <option key={item.value} value={item.value}>{item.label[lang]}</option>
+                        ))}
                       </select>
                     </div>
 
@@ -180,7 +179,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
                         required
                         value={details}
                         onChange={(e) => setDetails(e.target.value)}
-                        placeholder={lang === 'zh' ? '例：我定居在奥克兰，父母在广州天河区。母亲有轻微糖尿病，希望预约三甲医院的心血管筛查，需要双语体检报告，预计今年10月回国探亲...' : 'e.g., Based in Wellington, parents in Hangzhou. Seeking medical checkups with custom mobility mapping...'}
+                        placeholder={contactSectionContent.placeholders.details[lang]}
                         className="w-full text-xs py-3 px-4 rounded-lg bg-white/5 border border-white/15 focus:border-[#B39D82] focus:bg-white/10 text-white placeholder-slate-500 outline-none transition-all duration-200 resize-none"
                       />
                     </div>
@@ -226,17 +225,17 @@ export default function ContactForm({ lang }: ContactFormProps) {
                     {/* Visual metadata detailing response guarantees */}
                     <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto pt-4 border-t border-white/10 text-left text-[10px] sm:text-xs font-semibold text-slate-300 font-mono">
                       <div>
-                        <div className="text-[#B39D82] font-bold uppercase">{lang === 'zh' ? '受理号' : 'TICKET ID'}</div>
+                        <div className="text-[#B39D82] font-bold uppercase">{contactSectionContent.successMeta.ticketId[lang]}</div>
                         <div className="text-white">WT-NZ-2026-{Math.floor(Math.random() * 90000) + 10000}</div>
                       </div>
                       <div>
-                        <div className="text-[#B39D82] font-bold uppercase">{lang === 'zh' ? '时区归属' : 'INTAKE ZONE'}</div>
-                        <div className="text-white">Auckland / Wellington</div>
+                        <div className="text-[#B39D82] font-bold uppercase">{contactSectionContent.successMeta.intakeZone[lang]}</div>
+                        <div className="text-white">{contactSectionContent.successMeta.intakeValue}</div>
                       </div>
                     </div>
 
                     <div className="pt-2 text-[10px] text-slate-400 font-medium">
-                      {lang === 'zh' ? '安全加密连接 · 新西兰国家信息安全标准' : 'SECURE SSL PIPELINE · COMPLIANT WITH APY-ACT'}
+                      {contactSectionContent.successMeta.securityLine[lang]}
                     </div>
                   </motion.div>
                 )}
@@ -246,7 +245,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
 
           {/* Right column: WeChat QR Code & Contact card */}
           <div className="lg:col-span-3">
-            <WeChatQRCode lang={lang} />
+            <WeChatContactCard lang={lang} />
           </div>
 
         </div>

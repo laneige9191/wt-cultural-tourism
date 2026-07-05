@@ -5,15 +5,15 @@
 
 import React from 'react';
 import { Globe, ShieldCheck, Mail, PhoneCall } from 'lucide-react';
-import { staticTranslations } from '../lib/translations';
-import WTLogo from './WTLogo';
+import { contactInfo, headerContent, staticTranslations } from '../content/content';
+import BrandLogo from './BrandLogo';
 
-interface NavbarProps {
+interface SiteHeaderProps {
   lang: 'zh' | 'en';
   setLang: (lang: 'zh' | 'en') => void;
 }
 
-export default function Navbar({ lang, setLang }: NavbarProps) {
+export default function SiteHeader({ lang, setLang }: SiteHeaderProps) {
   const t = staticTranslations[lang];
 
   return (
@@ -24,17 +24,17 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
           <div className="flex items-center space-x-4">
             <span className="flex items-center space-x-1 text-[11px] sm:text-xs text-[#CBD5E1]">
               <ShieldCheck className="w-3.5 h-3.5 text-[#B39D82]" />
-              <span>新西兰商业注册认证 / NZ Registered Entity: #11783234</span>
+              <span>{headerContent.registrationLabel[lang]}</span>
             </span>
           </div>
           <div className="flex items-center space-x-4 text-[11px] sm:text-xs text-[#CBD5E1]">
             <span className="flex items-center space-x-1">
               <PhoneCall className="w-3 h-3 text-[#B39D82]" />
-              <span>+64 (09) 889-1888 (Auckland HQ)</span>
+              <span>{headerContent.phoneLabel}</span>
             </span>
             <span className="hidden md:flex items-center space-x-1">
               <Mail className="w-3 h-3 text-[#B39D82]" />
-              <span>1282380800@qq.com</span>
+              <span>{contactInfo.email}</span>
             </span>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
           
           {/* Elegant representation of WT NZ Logo */}
           <a href="#" className="hover:opacity-90 transition-opacity" id="logo-link">
-            <WTLogo className="w-12 h-12" lang={lang} />
+            <BrandLogo className="w-12 h-12" lang={lang} />
           </a>
 
           {/* Nav links for desktop */}
@@ -64,11 +64,11 @@ export default function Navbar({ lang, setLang }: NavbarProps) {
             <button
               onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
               className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-[#CBD5E1] hover:border-[#002855] hover:bg-[#F8FAFC] text-xs font-semibold text-[#334155] transition-all duration-200"
-              title="切换语言 / Toggle Language"
+              title={headerContent.languageToggleTitle}
               id="lang-toggle-btn"
             >
               <Globe className="w-3.5 h-3.5 text-[#002855]" />
-              <span>{lang === 'zh' ? 'EN' : '繁/简'}</span>
+              <span>{headerContent.languageToggleLabel[lang]}</span>
             </button>
 
             {/* Premium CTA Button */}
