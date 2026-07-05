@@ -1,0 +1,6 @@
+{
+  "name": "WT文化交流与旅游官网",
+  "description": "WT新西兰文化交流与旅游有限公司产品官网原型，专为海外华人打造的回国深度体检陪护、多代同堂定制慢旅行以及华裔新生代寻根传承高端平台。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
