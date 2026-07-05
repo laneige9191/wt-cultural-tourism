@@ -414,8 +414,6 @@ export const contactInfo = {
   wechatId: 'WT-NZ-CONCIERGE',
   aucklandPhone: '+64 (09) 889-1888',
   chinaPhone: '+86 (755) 8898-1212',
-  aucklandAddress: 'Level 18, PwC Tower, 15 Customs Street West, Auckland 1010',
-  chinaAddress: '深圳市福田区深南大道 2008 号中国凤凰大厦',
 };
 
 export const brandContent = {

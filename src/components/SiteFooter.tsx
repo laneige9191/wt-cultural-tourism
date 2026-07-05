@@ -55,13 +55,11 @@ export default function SiteFooter({ lang }: SiteFooterProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[11px] leading-relaxed">
               <div className="space-y-1">
                 <div className="text-white font-bold">{footerContent.aucklandHub[lang]}</div>
-                <div className="text-slate-400">{contactInfo.aucklandAddress}</div>
                 <div className="text-[#B39D82] font-semibold">{contactInfo.aucklandPhone}</div>
               </div>
 
               <div className="space-y-1">
                 <div className="text-white font-bold">{footerContent.chinaHub[lang]}</div>
-                <div className="text-slate-400">{contactInfo.chinaAddress}</div>
                 <div className="text-[#B39D82] font-semibold">{contactInfo.chinaPhone}</div>
               </div>
             </div>
