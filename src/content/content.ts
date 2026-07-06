@@ -412,10 +412,12 @@ export const staticTranslations = {
 
 export const contactInfo = {
   nzRegistration: '#11783234',
-  email: '1282380800@qq.com',
+  email: 'Sophiawanghodgson@gmail.com',
   wechatId: 'WT-NZ-CONCIERGE',
   aucklandPhone: '+64 (09) 889-1888',
   chinaPhone: '+86 (755) 8898-1212',
+  nelsonAddress: '89 Quebec Road, Washington Valley, Nelson, New Zealand',
+  chinaAddress: 'Room/Unit 24B, Block B, Taiping Yang Building (Pacific Building), Luohu District, Shenzhen, Guangdong, China',
 };
 
 export const brandContent = {
@@ -433,7 +435,7 @@ export const headerContent = {
     zh: `新西兰商业注册认证 / NZ Registered Entity: ${contactInfo.nzRegistration}`,
     en: `NZ Registered Entity: ${contactInfo.nzRegistration}`,
   },
-  phoneLabel: `${contactInfo.aucklandPhone} (Auckland HQ)`,
+  phoneLabel: `${contactInfo.aucklandPhone} (Nelson HQ)`,
   languageToggleTitle: '切换语言 / Toggle Language',
   languageToggleLabel: {
     zh: 'EN',
@@ -509,7 +511,7 @@ export const plannerContent = {
     { value: '新疆 (Xinjiang)', label: { zh: '新疆 (西域人文历史与壮丽丝路)', en: 'Xinjiang Region' } },
     { value: '青海 (Qinghai)', label: { zh: '青海 (高原生态与多代慢行)', en: 'Qinghai Province' } },
     { value: '浙江 (Zhejiang)', label: { zh: '浙江 (江南水乡与宗祠寻根)', en: 'Zhejiang Province' } },
-    { value: '奥克兰 (Auckland)', label: { zh: '奥克兰总部 (新西兰纯净高奢定制)', en: 'Auckland (Pure Luxury Travel)' } },
+    { value: '尼尔森 (Nelson)', label: { zh: '尼尔森总部 (新西兰纯净高奢定制)', en: 'Nelson HQ (Pure Luxury Travel)' } },
   ],
   addons: [
     { id: 'bilingual', label: { zh: '中英双语顾问', en: 'Bilingual Advisor' }, resultLabel: { zh: '中英双语顾问', en: 'Bilingual Support' } },
@@ -592,7 +594,7 @@ export const contactSectionContent = {
   guarantees: [
     {
       title: { zh: '24小时极速响应', en: '24-Hour Active Response' },
-      desc: { zh: '新西兰奥克兰总部与中国服务团队无缝对接，首问责任制', en: 'Seamless dual coordination by Auckland HQ and China service teams' },
+      desc: { zh: '新西兰尼尔森总部与中国服务团队无缝对接，首问责任制', en: 'Seamless dual coordination by Nelson HQ and China service teams' },
     },
     {
       title: { zh: '1对1资深定制顾问', en: 'Personal Custom Director' },
@@ -622,7 +624,7 @@ export const contactSectionContent = {
   successMeta: {
     ticketId: { zh: '受理号', en: 'TICKET ID' },
     intakeZone: { zh: '时区归属', en: 'INTAKE ZONE' },
-    intakeValue: 'Auckland / Wellington',
+    intakeValue: 'Nelson / Shenzhen',
     securityLine: {
       zh: '安全连接 · 家庭资料谨慎处理',
       en: 'SECURE PIPELINE · PRIVACY-CONSCIOUS HANDLING',
@@ -645,12 +647,12 @@ export const footerContent = {
     en: 'GLOBAL HUBS & CONTACT',
   },
   aucklandHub: {
-    zh: '奥克兰总部 (HQ)',
-    en: 'Auckland HQ',
+    zh: '新西兰尼尔森总部 (HQ)',
+    en: 'Nelson HQ',
   },
   chinaHub: {
-    zh: '中国南方办事处',
-    en: 'Southern China Hub',
+    zh: '中国大湾区办事处',
+    en: 'Greater Bay Area Office',
   },
   emailLabel: {
     zh: '客服邮箱：',
@@ -701,11 +703,11 @@ export const wechatContactContent = {
     en: 'COPY',
   },
   aucklandPhoneLabel: {
-    zh: '新西兰奥克兰总部',
-    en: 'Auckland HQ Phone',
+    zh: '新西兰尼尔森总部',
+    en: 'Nelson HQ Phone',
   },
   chinaPhoneLabel: {
-    zh: '中国南方办事处',
-    en: 'China Hub Phone',
+    zh: '中国大湾区办事处',
+    en: 'Greater Bay Area Office Phone',
   },
 };
