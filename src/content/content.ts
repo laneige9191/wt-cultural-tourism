@@ -244,6 +244,7 @@ export const caseScenarios: CaseScenario[] = [
 export const staticTranslations = {
   zh: {
     navServices: '核心业务',
+    navProduct: '产品介绍',
     navCapabilities: '品牌实力',
     navClients: '服务群体',
     navWorkflow: '尊享流程',
@@ -326,6 +327,7 @@ export const staticTranslations = {
   },
   en: {
     navServices: 'Pillars',
+    navProduct: 'Product',
     navCapabilities: 'Strengths',
     navClients: 'Profiles',
     navWorkflow: 'Workflow',

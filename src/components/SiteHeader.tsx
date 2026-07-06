@@ -44,18 +44,19 @@ export default function SiteHeader({ lang, setLang }: SiteHeaderProps) {
         <div className="flex justify-between items-center h-20">
           
           {/* Elegant representation of WT NZ Logo */}
-          <a href="#" className="hover:opacity-90 transition-opacity" id="logo-link">
+          <a href="/" className="hover:opacity-90 transition-opacity" id="logo-link">
             <BrandLogo className="w-12 h-12" lang={lang} />
           </a>
 
           {/* Nav links for desktop */}
           <div className="hidden lg:flex items-center space-x-8">
-            <a href="#services" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navServices}</a>
-            <a href="#capabilities" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navCapabilities}</a>
-            <a href="#clients" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navClients}</a>
-            <a href="#workflow" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navWorkflow}</a>
-            <a href="#cases" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navCases}</a>
-            <a href="#contact" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navContact}</a>
+            <a href="/#services" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navServices}</a>
+            <a href="/product" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navProduct}</a>
+            <a href="/#capabilities" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navCapabilities}</a>
+            <a href="/#clients" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navClients}</a>
+            <a href="/#workflow" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navWorkflow}</a>
+            <a href="/#cases" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navCases}</a>
+            <a href="/#contact" className="text-sm font-medium text-[#475569] hover:text-[#002855] transition-colors">{t.navContact}</a>
           </div>
 
           {/* Right side actions (Language & CTA button) */}
@@ -73,7 +74,7 @@ export default function SiteHeader({ lang, setLang }: SiteHeaderProps) {
 
             {/* Premium CTA Button */}
             <a
-              href="#contact"
+              href="/#contact"
               className="hidden md:inline-flex items-center justify-center px-4.5 py-2.5 rounded-lg text-xs font-bold tracking-wide text-white bg-[#002855] hover:bg-[#00529B] active:bg-[#031E3F] shadow-md shadow-[#002855]/10 hover:shadow-lg transition-all duration-200"
               id="nav-cta-btn"
             >
